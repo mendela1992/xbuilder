@@ -1,3 +1,5 @@
+package core;
+
 import constants.Attribute;
 import constants.Function;
 import constants.Selector;
@@ -15,14 +17,14 @@ public class XBuilder {
     private boolean history = false;
     private final LinkedList<String> xpathBuilderHistory;
 
-    XBuilder() {
-        this.xpathBuilder = new LinkedList();
+    public XBuilder() {
+        this.xpathBuilder = new LinkedList<>();
         xpathBuilderHistory = null;
     }
 
-    XBuilder(boolean history) {
-        this.xpathBuilder = new LinkedList();
-        this.xpathBuilderHistory = new LinkedList();
+   public  XBuilder(boolean history) {
+        this.xpathBuilder = new LinkedList<>();
+        this.xpathBuilderHistory = new LinkedList<>();
         this.history = history;
     }
 
@@ -33,7 +35,7 @@ public class XBuilder {
      * @param function  function value
      * @param attribute attribute value
      * @param value     value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder nodeWith(Selector selector, Function function, Attribute attribute, String value) {
         this.xpathBuilder.clear();
@@ -46,7 +48,7 @@ public class XBuilder {
      * @param selector  Selector value
      * @param attribute attribute value
      * @param value     value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder nodeWith(Selector selector, Attribute attribute, String value) {
         this.xpathBuilder.clear();
@@ -60,7 +62,7 @@ public class XBuilder {
      * @param function  function value
      * @param attribute attribute value
      * @param value     value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder with(Selector selector, Function function, Attribute attribute, String value) {
         this.xpathBuilder.add(DoubleSlash.getValue());
@@ -120,7 +122,7 @@ public class XBuilder {
      * @param selector  Selector value
      * @param attribute attribute value
      * @param value     value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder with(Selector selector, Attribute attribute, String value) {
         this.with(selector, null, attribute, value);
@@ -131,7 +133,7 @@ public class XBuilder {
      * Include previous expression between bracket
      *
      * @param index index value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder bracket(int index) {
         this.xpathBuilder.add(0, OpenBracket.getValue());
@@ -143,7 +145,7 @@ public class XBuilder {
      * Index your xpathBuilder
      *
      * @param index index value
-     * @return Instance to XBuilder
+     * @return Instance to core.XBuilder
      */
     public XBuilder index(int index) {
         this.xpathBuilder.add(OpenSquareBracket.getValue());
@@ -159,7 +161,7 @@ public class XBuilder {
      */
     public String build() {
         if (this.xpathBuilder.isEmpty()) {
-            throw new NullPointerException("XBuilder builder is empty");
+            throw new NullPointerException("core.XBuilder builder is empty");
         }
 
         StringBuilder path = new StringBuilder();
